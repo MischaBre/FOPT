@@ -10,7 +10,6 @@ public class Loop2 {
 
         // Aufgabe 2.3
 
-
         Thread t1 = new Thread(() -> hauRaus("Thread 1"));
         Thread t2 = new Thread(() -> hauRaus("Thread 2"));
         Thread t3 = new Thread(() -> hauRaus("Thread 3"));
