@@ -1,9 +1,9 @@
 package pp.ampel;
 
 public class AmpelSteuerung extends Thread {
-    private static int AMPELANZAHL = 5;
-    private static int AUTOZEIT = 5000;
-    private static int AMPELZEIT = 1000;
+    private static int AMPELANZAHL = 3;
+    private static int AUTOZEIT = 1000;
+    private static int AMPELZEIT = 5000;
     private Ampel[] ampeln;
 
     public AmpelSteuerung(Ampel[] ampeln, String name) {

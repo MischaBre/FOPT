@@ -11,7 +11,7 @@ public class Auto extends Thread {
 
     @Override
     public void run() {
-        for (int i= 0; i < ampeln.length; i++) {
+        for (int i = 0; i < ampeln.length; i++) {
             synchronized (ampeln[i]) {
                 try {
                     System.out.println(getName() + " wartet an Ampel " + i);
