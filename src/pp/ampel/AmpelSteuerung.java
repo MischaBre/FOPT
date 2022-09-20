@@ -41,11 +41,9 @@ public class AmpelSteuerung extends Thread {
     public static void main(String[] args) {
         Ampel[] a = new Ampel[AMPELANZAHL];
         for (int i = 0; i < AMPELANZAHL; i++) {
-            a[i] = new ItalienischeAmpel();
-        }
-        /*for (int i = AMPELANZAHL; i < AMPELANZAHL * 2; i++) {
+            // a[i] = new ItalienischeAmpel();
             a[i] = new DeutscheAmpel();
-        }*/
+        }
         AmpelSteuerung as = new AmpelSteuerung(a, "Ampelsteuerung1");
         Auto auto;
         int auto_count = 0;

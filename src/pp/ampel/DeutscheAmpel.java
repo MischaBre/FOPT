@@ -34,6 +34,7 @@ public class DeutscheAmpel implements Ampel {
         if (wartendeFahrzeuge > 0) {
             wartendeFahrzeuge = 0;
         }
+        notify();
     }
 
     @Override

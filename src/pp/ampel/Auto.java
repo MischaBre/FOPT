@@ -14,6 +14,7 @@ public class Auto extends Thread {
         for (int i= 0; i < ampeln.length; i++) {
             synchronized (ampeln[i]) {
                 try {
+                    System.out.println(getName() + " wartet an Ampel " + i);
                     ampeln[i].passieren();
                 } catch (InterruptedException e) {
                     e.printStackTrace();
