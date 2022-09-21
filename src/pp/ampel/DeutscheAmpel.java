@@ -1,3 +1,8 @@
+/* FOPT ASB Aufgabe 1
+   2022-09-22
+   Michael Gemsa
+ */
+
 package pp.ampel;
 
 public class DeutscheAmpel implements Ampel {

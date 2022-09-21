@@ -7,13 +7,13 @@ package pp.ampel;
 
 public interface Ampel {
 
-    public void schalteRot();
+    void schalteRot();
 
-    public void schalteGruen();
+    void schalteGruen();
 
-    public void passieren() throws InterruptedException;
+    void passieren() throws InterruptedException;
 
-    public int wartendeFahrzeuge();
+    int wartendeFahrzeuge();
 
-    public String zeigeZustand();
+    String zeigeZustand();
 }
