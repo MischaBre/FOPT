@@ -53,7 +53,8 @@ public class AmpelSteuerung extends Thread {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            auto = new Auto(a, auto_count++);
+            auto = new Auto(a);
+            auto_count++;
         }
     }
 }

@@ -3,8 +3,8 @@ package pp.ampel;
 public class Auto extends Thread {
     private Ampel[] ampeln;
 
-    public Auto (Ampel[] ampeln, int num) {
-        super(String.valueOf(num));
+    public Auto (Ampel[] ampeln) {
+        super();
         this.ampeln = ampeln;
         start();
     }

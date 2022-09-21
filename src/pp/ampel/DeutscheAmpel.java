@@ -10,30 +10,28 @@ public class DeutscheAmpel implements Ampel {
     }
 
     @Override
-    public void schalteRot() {
+    public synchronized void schalteRot() {
         this.zustand = 0;
     }
 
     @Override
-    public void schalteGruen() {
+    public synchronized void schalteGruen() {
         this.zustand = 1;
         notify();
     }
 
     @Override
-    public int wartendeFahrzeuge() {
+    public synchronized int wartendeFahrzeuge() {
         return wartendeFahrzeuge;
     }
 
     @Override
     public synchronized void passieren() throws InterruptedException {
+        wartendeFahrzeuge++;
         while (zustand == 0) {
-            wartendeFahrzeuge++;
             wait();
         }
-        if (wartendeFahrzeuge > 0) {
-            wartendeFahrzeuge = 0;
-        }
+        wartendeFahrzeuge = 0;
         notify();
     }
 
