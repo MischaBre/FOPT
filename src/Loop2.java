@@ -1,8 +1,17 @@
-public class Loop2 {
+public class Loop2 implements Runnable {
 
-    public static void hauRaus(String myName) {
-        for (int i = 1; i <= 1000; i++) {
-            System.out.println(myName + " (" + i + ") ");
+    private String name;
+    private int i;
+
+    public Loop2 (String name) {
+        this.name = name;
+    }
+
+    public void run() {
+        i = 0;
+        // Thread.currentThread().setName(name);
+        while (i < 100) {
+            System.out.println(Thread.currentThread().getName() + " (" + i++ + ") ");
         }
     }
 
@@ -10,12 +19,10 @@ public class Loop2 {
 
         // Aufgabe 2.3
 
-        Thread t1 = new Thread(() -> hauRaus("Thread 1"));
-        Thread t2 = new Thread(() -> hauRaus("Thread 2"));
-        Thread t3 = new Thread(() -> hauRaus("Thread 3"));
-
+        Loop2 l1 = new Loop2("Jupp");
+        Thread t1 = new Thread(l1);
+        Thread t2 = new Thread(l1);
         t1.start();
         t2.start();
-        t3.start();
     }
 }
