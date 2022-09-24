@@ -33,6 +33,7 @@ public class TaskCountService implements Task <Integer> {
         for (Integer r : results) {
             result += r;
         }
+        System.out.println("Combining " + result);
         return result;
     }
 
@@ -41,7 +42,6 @@ public class TaskCountService implements Task <Integer> {
         int result = 0;
         for (boolean a : array) {
             if (a) {
-                System.out.println(Thread.currentThread().getName() + ": " + result);
                 result++;
             }
         }
