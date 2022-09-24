@@ -30,7 +30,7 @@ public class TaskNodeExecutor <T> extends Thread {
                 subresults.add(thread.getResult());
             }
             result = task.combine(subresults);
-        } else {
+        } else {            // !task.isDivisible()
             result = task.execute();
         }
     }

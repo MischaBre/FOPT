@@ -6,24 +6,35 @@ import java.util.List;
 
 public class TaskCountService implements Task <Integer> {
     private boolean[] array;
+    private int startIndex;
+    private int endIndex;
     private int minLength;
+    private int recursionLevel;
 
-    public TaskCountService (boolean[] array, int minLength) {
+    public TaskCountService (boolean[] array, int startIndex, int endIndex, int minLength, int recursionLevel) {
         this.array = array;
+        this.startIndex = startIndex;
+        this.endIndex = endIndex;
         this.minLength = minLength;
+        this.recursionLevel = recursionLevel;
     }
 
     @Override
     public boolean isDivisible() {
-        return array.length > minLength;
+        return endIndex - startIndex > minLength;
     }
 
     @Override
     public List<Task<Integer>> split() {
         List<Task<Integer>> splitList = new ArrayList<>();
-        System.out.println("Splitting " + array.length + " at " + array.length/2);
-        splitList.add(new TaskCountService(Arrays.copyOfRange(array, 0, array.length / 2), minLength));
-        splitList.add(new TaskCountService(Arrays.copyOfRange(array, array.length / 2, array.length), minLength));
+        int splitIndex = (endIndex + startIndex) / 2;
+        /* System.out.println(Thread.currentThread().getName() +
+                ": Splitting " + startIndex +
+                "-" + endIndex +
+                " at " + splitIndex +
+                " on level " + recursionLevel); */
+        splitList.add(new TaskCountService(array, startIndex, splitIndex, minLength, recursionLevel + 1));
+        splitList.add(new TaskCountService(array, splitIndex, endIndex, minLength, recursionLevel + 1));
         return splitList;
     }
 
@@ -33,15 +44,15 @@ public class TaskCountService implements Task <Integer> {
         for (Integer r : results) {
             result += r;
         }
-        System.out.println("Combining " + result);
+        // System.out.println("Combining " + result);
         return result;
     }
 
     @Override
     public Integer execute() {
         int result = 0;
-        for (boolean a : array) {
-            if (a) {
+        for (int i = startIndex; i < endIndex; i++) {
+            if (array[i]) {
                 result++;
             }
         }
