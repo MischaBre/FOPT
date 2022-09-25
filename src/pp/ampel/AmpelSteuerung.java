@@ -20,7 +20,7 @@ public class AmpelSteuerung extends Thread {
     @Override
     public void run() {
         StringBuilder ampelZustaende = new StringBuilder();
-        while(true) {
+        while (true) {
             for (Ampel a : ampeln) {
                 synchronized (a) {
                     if (Math.random() > 0.5) {
@@ -30,7 +30,7 @@ public class AmpelSteuerung extends Thread {
                     }
                 }
             }
-            ampelZustaende.delete(0,ampelZustaende.length());
+            ampelZustaende.delete(0, ampelZustaende.length());
             for (Ampel a : ampeln) {
                 ampelZustaende.append(a.zeigeZustand()).append("___");
             }

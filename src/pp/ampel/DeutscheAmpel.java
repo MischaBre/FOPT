@@ -7,11 +7,15 @@ package pp.ampel;
 
 public class DeutscheAmpel implements Ampel {
     private int zustand; // 0 = rot, 1 = gruen
+    private int warteNummer;
+    private int fahrNummer;
     private int wartendeFahrzeuge;
 
     public DeutscheAmpel() {
         this.zustand = 0;
         this.wartendeFahrzeuge = 0;
+        this.warteNummer = 0;
+        this.fahrNummer = 0;
     }
 
     @Override
@@ -22,7 +26,7 @@ public class DeutscheAmpel implements Ampel {
     @Override
     public synchronized void schalteGruen() {
         this.zustand = 1;
-        notify();
+        notifyAll();
     }
 
     @Override
@@ -32,12 +36,14 @@ public class DeutscheAmpel implements Ampel {
 
     @Override
     public synchronized void passieren() throws InterruptedException {
+        int myWarteNummer = warteNummer++;
         wartendeFahrzeuge++;
-        while (zustand == 0) {
+        while (myWarteNummer != fahrNummer || zustand == 0) {
             wait();
         }
         wartendeFahrzeuge = 0;
-        notify();
+        fahrNummer++;
+        notifyAll();
     }
 
     @Override

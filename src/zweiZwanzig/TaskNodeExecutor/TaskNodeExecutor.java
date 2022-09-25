@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TaskNodeExecutor <T> extends Thread {
-    private Task<T> task;
+    private final Task<T> task;
     private T result;
 
     public TaskNodeExecutor(Task<T> task) {

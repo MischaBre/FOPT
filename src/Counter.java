@@ -1,7 +1,7 @@
 public class Counter extends Thread {
-    private CounterManager counterManager;
-    private double rando;
-    private static int WAIT = 10000;
+    private final CounterManager counterManager;
+    private final double rando;
+    private static final int WAIT = 10000;
 
     public Counter(String name, CounterManager cm, double rnd) {
         super(name);

@@ -5,11 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 public class TaskCountService implements Task <Integer> {
-    private boolean[] array;
-    private int startIndex;
-    private int endIndex;
-    private int minLength;
-    private int recursionLevel;
+    private final boolean[] array;
+    private final int startIndex;
+    private final int endIndex;
+    private final int minLength;
+    private final int recursionLevel;
 
     public TaskCountService (boolean[] array, int startIndex, int endIndex, int minLength, int recursionLevel) {
         this.array = array;

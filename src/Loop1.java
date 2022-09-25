@@ -1,5 +1,5 @@
 public class Loop1 implements Runnable {
-    private String myName;
+    private final String myName;
 
     public Loop1 (String name) {
         myName = name;

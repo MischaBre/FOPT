@@ -6,9 +6,9 @@
 package pp.ampel;
 
 public class Auto extends Thread {
-    private Ampel[] ampeln;
+    private final Ampel[] ampeln;
 
-    public Auto (Ampel[] ampeln) {
+    public Auto(Ampel[] ampeln) {
         super();
         this.ampeln = ampeln;
         start();

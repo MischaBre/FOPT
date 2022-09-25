@@ -1,10 +1,10 @@
 package zweiZwanzig.asynch;
 
 public class ServiceCallback implements Runnable {
-    private boolean[] array;
-    private int start;
-    private int end;
-    private ResultListener h;
+    private final boolean[] array;
+    private final int start;
+    private final int end;
+    private final ResultListener h;
 
     public ServiceCallback(boolean[] array, int start, int end, ResultListener listener) {
         this.array = array;

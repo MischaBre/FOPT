@@ -1,6 +1,6 @@
 public class Loop2 implements Runnable {
 
-    private String name;
+    private final String name;
     private int i;
 
     public Loop2 (String name) {

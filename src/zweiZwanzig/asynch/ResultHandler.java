@@ -4,7 +4,7 @@ public class ResultHandler implements ResultListener {
 
     private int result;
     private int numberOfResults;
-    private int expectedNumberOfResults;
+    private final int expectedNumberOfResults;
 
     public ResultHandler(int expectedNumberOfResults) {
         this.expectedNumberOfResults = expectedNumberOfResults;
