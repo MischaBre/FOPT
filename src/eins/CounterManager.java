@@ -1,3 +1,5 @@
+package eins;
+
 public class CounterManager {
     private int count;
     static int MAXCOUNTER = 4;

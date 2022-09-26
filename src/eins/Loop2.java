@@ -1,3 +1,5 @@
+package eins;
+
 public class Loop2 implements Runnable {
 
     private final String name;

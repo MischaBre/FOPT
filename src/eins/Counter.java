@@ -1,3 +1,5 @@
+package eins;
+
 public class Counter extends Thread {
     private final CounterManager counterManager;
     private final double rando;
