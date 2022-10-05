@@ -11,6 +11,7 @@ public class myThread extends Thread {
         this.name = name;
         this.sem1 = sem1;
         this.sem2 = sem2;
+        start();
     }
 
     private void printMsg() {
@@ -18,9 +19,10 @@ public class myThread extends Thread {
     }
 
     public void run() {
-        while( true) {
+        while(true) {
             try {
                 sem1.acquire();
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
