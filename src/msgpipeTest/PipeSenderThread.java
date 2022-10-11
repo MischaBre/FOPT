@@ -3,9 +3,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class PipeSenderThread extends Thread {
-    private int bufferSize;
-    private int speed;
-    private Pipe pipe;
+    private final int bufferSize;
+    private final int speed;
+    private final Pipe pipe;
 
     public PipeSenderThread(String name, Pipe pipe, int size, int speed) {
         super(name);

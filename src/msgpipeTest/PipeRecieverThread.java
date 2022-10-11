@@ -2,9 +2,9 @@ package msgpipeTest;
 import java.util.Arrays;
 
 public class PipeRecieverThread extends Thread {
-    private int bufferSize;
-    private int speed;
-    private Pipe pipe;
+    private final int bufferSize;
+    private final int speed;
+    private final Pipe pipe;
 
     public PipeRecieverThread(String name, Pipe pipe, int size, int speed) {
         super(name);

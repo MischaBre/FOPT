@@ -3,26 +3,22 @@ package pp.synchstacksem;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SynchStack
-{
-    private List<Object> data;
-    private Semaphore dataSem;
-    private Semaphore lockSem;
-    private int head;
+public class SynchStack {
+    private final List<Object> data;
+    private final Semaphore dataSem;
+    private final Semaphore lockSem;
+    private final int head;
 
-    public SynchStack()
-    {
+    public SynchStack() {
         this.data = new ArrayList<Object>();
         this.lockSem = new Semaphore(1);
         this.dataSem = new Semaphore(0);
         this.head = 0;
     }
 
-    public void push(Object o)
-    {
+    public void push(Object o) {
         // Object validation
-        if (o == null)
-        {
+        if (o == null) {
             throw new IllegalArgumentException("Object is null");
         }
         // tries dataLock, adds 1 to dataSemaphore, adds data, returns lock
@@ -33,8 +29,7 @@ public class SynchStack
         dataSem.v();
     }
 
-    public Object pop()
-    {
+    public Object pop() {
         dataSem.p();
         lockSem.p();
         Object o = data.remove(data.size() - 1);

@@ -10,10 +10,10 @@ public class BufferSem {
 
     private int tail;
     private int head;
-    private int[] data;
-    private Semaphore mutexSem;
-    private Semaphore itemSem;
-    private Semaphore placesSem;
+    private final int[] data;
+    private final Semaphore mutexSem;
+    private final Semaphore itemSem;
+    private final Semaphore placesSem;
 
     public BufferSem(int n) {
         if (n <= 0) {

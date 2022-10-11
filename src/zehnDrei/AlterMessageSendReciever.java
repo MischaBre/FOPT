@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class AlterMessageSendReciever extends Thread {
-    private MessageQueue msgQ1;
-    private MessageQueue msgQ2;
-    private int speed;
+    private final MessageQueue msgQ1;
+    private final MessageQueue msgQ2;
+    private final int speed;
 
     public AlterMessageSendReciever(String name, MessageQueue msgQ1, MessageQueue msgQ2, int speed) {
         super(name);

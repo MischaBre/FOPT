@@ -2,7 +2,7 @@ package msgpipeTest;
 
 public class Pipe {
 
-    private byte[] buffer;
+    private final byte[] buffer;
     private int bsize = 0;
     private int head = 0;
     private int tail = 0;

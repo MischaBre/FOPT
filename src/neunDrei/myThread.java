@@ -3,9 +3,9 @@ package neunDrei;
 import java.util.concurrent.Semaphore;
 
 public class myThread extends Thread {
-    private String name;
-    private Semaphore sem1;
-    private Semaphore sem2;
+    private final String name;
+    private final Semaphore sem1;
+    private final Semaphore sem2;
 
     public myThread(String name, Semaphore sem1, Semaphore sem2) {
         this.name = name;
