@@ -3,7 +3,7 @@
    Michael Gemsa
  */
 
-package pp.ampel;
+package ampel;
 
 public class AmpelSteuerung extends Thread {
     private static final int AMPELANZAHL = 3;

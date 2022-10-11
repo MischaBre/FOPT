@@ -3,19 +3,15 @@
    Michael Gemsa
  */
 
-package pp.ampel;
+package ampel;
 
-public class DeutscheAmpel implements Ampel {
+public class ItalienischeAmpel implements Ampel {
     private int zustand; // 0 = rot, 1 = gruen
-    private int warteNummer;
-    private int fahrNummer;
     private int wartendeFahrzeuge;
 
-    public DeutscheAmpel() {
+    public ItalienischeAmpel() {
         this.zustand = 0;
         this.wartendeFahrzeuge = 0;
-        this.warteNummer = 0;
-        this.fahrNummer = 0;
     }
 
     @Override
@@ -36,14 +32,11 @@ public class DeutscheAmpel implements Ampel {
 
     @Override
     public synchronized void passieren() throws InterruptedException {
-        int myWarteNummer = warteNummer++;
         wartendeFahrzeuge++;
-        while (myWarteNummer != fahrNummer || zustand == 0) {
+        while (zustand == 0) {
             wait();
         }
         wartendeFahrzeuge = 0;
-        fahrNummer++;
-        notifyAll();
     }
 
     @Override

@@ -57,7 +57,7 @@ public class MessageQueue {
         MessageQueue mQ1 = new MessageQueue(10);
         MessageQueue mQ2 = new MessageQueue(10);
 
-        AlterMessageSendReciever amsr1 = new AlterMessageSendReciever("A1", mQ1, mQ2);
-        AlterMessageSendReciever amsr2 = new AlterMessageSendReciever("A2", mQ2, mQ1);
+        AlterMessageSendReciever amsr1 = new AlterMessageSendReciever("A1", mQ1, mQ2, 100);
+        AlterMessageSendReciever amsr2 = new AlterMessageSendReciever("A2", mQ2, mQ1, 1000);
     }
 }

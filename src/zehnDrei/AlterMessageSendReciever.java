@@ -6,11 +6,13 @@ import java.util.Random;
 public class AlterMessageSendReciever extends Thread {
     private MessageQueue msgQ1;
     private MessageQueue msgQ2;
+    private int speed;
 
-    public AlterMessageSendReciever(String name, MessageQueue msgQ1, MessageQueue msgQ2) {
+    public AlterMessageSendReciever(String name, MessageQueue msgQ1, MessageQueue msgQ2, int speed) {
         super(name);
         this.msgQ1 = msgQ1;
         this.msgQ2 = msgQ2;
+        this.speed = speed;
         start();
     }
 
@@ -19,16 +21,16 @@ public class AlterMessageSendReciever extends Thread {
         while (true) {
             byte[] sendBytes = new byte[10];
             new Random().nextBytes(sendBytes);
-            System.out.println(getName() + ": Sending " + Arrays.toString(sendBytes));
+            msgQ1.send(sendBytes);
+            System.out.println(System.nanoTime() / 1_000_000 + " - " + getName() + ": Sent " + Arrays.toString(sendBytes));
             try {
-                sleep(50);
+                sleep(speed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            msgQ1.send(sendBytes);
-            System.out.println(getName() + ": Recieving " + Arrays.toString(msgQ2.recieve()));
+            System.out.println(System.nanoTime() / 1_000_000 + " - " + getName() + ": Recieving " + Arrays.toString(msgQ2.recieve()));
             try {
-                sleep(50);
+                sleep(speed);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

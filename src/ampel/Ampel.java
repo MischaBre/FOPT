@@ -3,7 +3,7 @@
    Michael Gemsa
  */
 
-package pp.ampel;
+package ampel;
 
 public interface Ampel {
 

@@ -3,7 +3,7 @@
    Michael Gemsa
  */
 
-package pp.ampel;
+package ampel;
 
 public class Auto extends Thread {
     private final Ampel[] ampeln;
