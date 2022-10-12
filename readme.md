@@ -18,4 +18,5 @@ sind.
 Viel Spaß beim Durchforschen und Angucken. Freue mich
 auch gerne über Fehleranmerkungen oder Tipps.
 
-Die Aufgaben sind im [beigefügten pdf](FOPT1_2_A6D122.pdf) .
+Die dazugehörigen Aufgaben darf ich
+leider nicht anhängen (Copyright).
