@@ -1,4 +1,4 @@
-package zwoelfEins;
+package zwoelf;
 
 public class ReentrantLock {
 

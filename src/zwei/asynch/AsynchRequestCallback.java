@@ -1,4 +1,4 @@
-package zweiZwanzig.asynch;
+package zwei.asynch;
 
 public class AsynchRequestCallback {
     private static final int ARRAY_SIZE = 0x6FFFFFFF;

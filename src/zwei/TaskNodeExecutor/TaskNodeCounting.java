@@ -1,4 +1,4 @@
-package zweiZwanzig.TaskNodeExecutor;
+package zwei.TaskNodeExecutor;
 
 public class TaskNodeCounting {
     private static final int ARRAY_SIZE = 500_000_000;

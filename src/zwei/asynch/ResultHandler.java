@@ -1,4 +1,4 @@
-package zweiZwanzig.asynch;
+package zwei.asynch;
 
 public class ResultHandler implements ResultListener {
 

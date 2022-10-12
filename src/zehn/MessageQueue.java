@@ -1,4 +1,6 @@
-package zehnDrei;
+// Aufgabe 10.3
+
+package zehn;
 
 public class MessageQueue {
     private byte[][] msgQueue = null;

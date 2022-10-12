@@ -1,8 +1,9 @@
-/* Erzeuger-Verbraucher Problem aus Lehrheft Listing 3.6
+/* Aufgabe 10.2
+   Erzeuger-Verbraucher Problem aus Lehrheft Listing 3.6
    mit Semaphoren anstatt synchronized, wait, notify.
  */
 
-package zehnZwei;
+package zehn;
 
 import java.util.concurrent.Semaphore;
 

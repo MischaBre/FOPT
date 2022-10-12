@@ -1,4 +1,4 @@
-package zweiZwanzig.asynch;
+package zwei.asynch;
 
 public class ServiceCallback implements Runnable {
     private final boolean[] array;

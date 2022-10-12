@@ -1,4 +1,6 @@
-package zehnDrei;
+// Aufgabe 10.3
+
+package zehn;
 
 import java.util.Arrays;
 import java.util.Random;

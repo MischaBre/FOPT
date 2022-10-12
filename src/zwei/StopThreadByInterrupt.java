@@ -1,4 +1,6 @@
-package zweiSiebzehn;
+// Aufgabe 2.17
+
+package zwei;
 
 public class StopThreadByInterrupt extends Thread {
     public StopThreadByInterrupt() {

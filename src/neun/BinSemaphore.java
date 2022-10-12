@@ -1,4 +1,6 @@
-package neunEins;
+// Aufgabe 9.1
+
+package neun;
 
 public class BinSemaphore {
     private boolean locked;
