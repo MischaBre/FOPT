@@ -1,6 +1,4 @@
-package pp.synchstacksem;
-
-import java.util.Random;
+package synchstacksem;
 
 public class SynchStackTester extends Thread {
     private final boolean isSender;

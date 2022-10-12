@@ -1,4 +1,4 @@
-package pp.synchstacksem;
+package synchstacksem;
 
 import java.util.ArrayList;
 import java.util.List;

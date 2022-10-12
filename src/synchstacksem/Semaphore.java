@@ -1,4 +1,4 @@
-package pp.synchstacksem;
+package synchstacksem;
 
 public class Semaphore {
     private int value;
