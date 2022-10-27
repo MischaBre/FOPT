@@ -4,9 +4,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.Scene;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -15,14 +13,18 @@ import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class CountryInfo extends Application
 {
-    private final ObservableList<Country> countryList = FXCollections.observableArrayList();;
+    private final ObservableList<Country> countryList = FXCollections.observableArrayList();
     private final ComboBox<Country> cobo1 = new ComboBox<>();
     private final CheckBox chbo1 = new CheckBox("exakte Angaben");
     private final List<Label> labels = new ArrayList<>();
+    private final Button b1 = new Button("Hinzufügen");
+    private final Button b2 = new Button("Löschen");
+    private final List<TextField> textFields = new ArrayList<>();
 
     public CountryInfo()
     {
@@ -38,6 +40,8 @@ public class CountryInfo extends Application
 
         cobo1.setOnAction(e -> countryUpdate(cobo1.getValue()));
         chbo1.setOnAction(e -> countryUpdate(cobo1.getValue()));
+        b1.setOnAction(e -> clickedAdd());
+        b2.setOnAction(e -> clickedDelete());
 
         countryUpdate(cobo1.getValue());
 
@@ -48,11 +52,86 @@ public class CountryInfo extends Application
 
     private void countryUpdate(Country c)
     {
-        labels.get(0).textProperty().set(cobo1.getValue().getName());
-        labels.get(1).textProperty().set(cobo1.getValue().getCapital());
-        labels.get(2).textProperty().set(convertLongToStringRounded(cobo1.getValue().getPeople()));
-        labels.get(3).textProperty().set(convertLongToStringRounded(cobo1.getValue().getArea()));
-        labels.get(4).textProperty().set(String.format("%d", cobo1.getValue().getBevDichte()));
+        if (c.getArea() == -1)
+        {
+            for (Label l : labels)
+            {
+                l.textProperty().set("");
+            }
+        }
+        else
+        {
+            labels.get(0).textProperty().set(cobo1.getValue().getName());
+            labels.get(1).textProperty().set(cobo1.getValue().getCapital());
+            labels.get(2).textProperty().set(convertLongToStringRounded(cobo1.getValue().getPeople()));
+            labels.get(3).textProperty().set(convertLongToStringRounded(cobo1.getValue().getArea()));
+            labels.get(4).textProperty().set(String.format("%d", cobo1.getValue().getBevDichte()));
+        }
+    }
+
+    private boolean areTextFieldsValid()
+    {
+        try
+        {
+            Long.parseLong(textFields.get(2).textProperty().get());
+            Long.parseLong(textFields.get(3).textProperty().get());
+            return true;
+        }
+        catch (NumberFormatException e)
+        {
+            return false;
+        }
+    }
+
+    private boolean areTextFieldsEmpty()
+    {
+        for (TextField t : textFields)
+        {
+            if (Objects.equals(t.textProperty().get(), ""))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void emptyTextFields()
+    {
+        for (TextField t : textFields)
+        {
+            t.textProperty().set("");
+        }
+    }
+
+    private void clickedAdd()
+    {
+        if (!areTextFieldsEmpty() && areTextFieldsValid())
+        {
+            countryList.add(new Country(textFields.get(0).textProperty().get(),
+                    textFields.get(1).textProperty().get(),
+                    Long.parseLong(textFields.get(2).textProperty().get()),
+                    Long.parseLong(textFields.get(3).textProperty().get())));
+            emptyTextFields();
+        }
+    }
+
+    private void clickedDelete()
+    {
+        if (countryList.isEmpty())
+        {
+            return;
+        }
+        Country toDelete = cobo1.getValue();
+        int index = countryList.indexOf(toDelete);
+        if (index == countryList.size() - 1 && index == 0) {
+            countryList.add(new Country("Keine Länder vorhanden", "", -1, -1));
+        }
+        else if (index == countryList.size() - 1)
+        {
+            index--;
+        }
+        cobo1.getSelectionModel().select(index + 1);
+        countryList.remove(toDelete);
     }
 
     private Scene initUI()
@@ -111,16 +190,41 @@ public class CountryInfo extends Application
 
         hb1.getChildren().add(vb3);
 
+        TextField tf1 = new TextField("Land");
+        tf1.setId("countryField");
+        TextField tf2 = new TextField("Hauptstadt");
+        tf2.setId("capitalField");
+        TextField tf3 = new TextField("Einwohner");
+        tf3.setId("populationField");
+        TextField tf4 = new TextField("Fläche");
+        tf4.setId("areaField");
+
+        b1.setId("add");
+        b2.setId("delete");
+
+        textFields.add(tf1);
+        textFields.add(tf2);
+        textFields.add(tf3);
+        textFields.add(tf4);
+
+        HBox hb2 = new HBox();
+        hb2.getChildren().add(tf1);
+        hb2.getChildren().add(tf2);
+        hb2.getChildren().add(tf3);
+        hb2.getChildren().add(tf4);
+        hb2.getChildren().add(b1);
+
         VBox vb1 = new VBox();
         vb1.getChildren().add(cobo1);
         vb1.getChildren().add(chbo1);
         vb1.getChildren().add(hb1);
+        vb1.getChildren().add(hb2);
+        vb1.getChildren().add(b2);
 
         VBox root = new VBox();
         root.getChildren().add(vb1);
 
-        Scene scene = new Scene(root, 500,300);
-        return scene;
+        return new Scene(root, 800,300);
     }
 
     private String convertLongToStringRounded(Long num)
