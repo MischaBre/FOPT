@@ -29,6 +29,7 @@ public class CountryInfo extends Application
     public CountryInfo()
     {
         cobo1.setId("countrySelector");
+        cobo1.setPromptText("Keine Länder vorhanden");
         chbo1.setId("exactValues");
         countryList.add(new Country("Kanada", "Ottawa", 34278406, 9984670));
         countryList.add(new Country("Luxemburg", "Luxemburg", 511480, 2586));
@@ -43,7 +44,11 @@ public class CountryInfo extends Application
         b1.setOnAction(e -> clickedAdd());
         b2.setOnAction(e -> clickedDelete());
 
-        countryUpdate(cobo1.getValue());
+        if (!countryList.isEmpty())
+        {
+            cobo1.setValue(countryList.get(0));
+            countryUpdate(cobo1.getValue());
+        }
 
         primaryStage.setScene(scene);
         primaryStage.setTitle("Länder-Informationen");
@@ -52,7 +57,7 @@ public class CountryInfo extends Application
 
     private void countryUpdate(Country c)
     {
-        if (c.getArea() == -1)
+        if (c == null)
         {
             for (Label l : labels)
             {
@@ -65,7 +70,7 @@ public class CountryInfo extends Application
             labels.get(1).textProperty().set(cobo1.getValue().getCapital());
             labels.get(2).textProperty().set(convertLongToStringRounded(cobo1.getValue().getPeople()));
             labels.get(3).textProperty().set(convertLongToStringRounded(cobo1.getValue().getArea()));
-            labels.get(4).textProperty().set(String.format("%d", cobo1.getValue().getBevDichte()));
+            labels.get(4).textProperty().set(cobo1.getValue().getBevDichte());
         }
     }
 
@@ -73,9 +78,9 @@ public class CountryInfo extends Application
     {
         try
         {
-            Long.parseLong(textFields.get(2).textProperty().get());
-            Long.parseLong(textFields.get(3).textProperty().get());
-            return true;
+            long l1 = Long.parseLong(textFields.get(2).textProperty().get());
+            long l2 = Long.parseLong(textFields.get(3).textProperty().get());
+            return l1 >= 0 && l2 >= 0;
         }
         catch (NumberFormatException e)
         {
@@ -113,6 +118,10 @@ public class CountryInfo extends Application
                     Long.parseLong(textFields.get(3).textProperty().get())));
             emptyTextFields();
         }
+        if (countryList.size() == 1)
+        {
+            cobo1.getSelectionModel().selectFirst();
+        }
     }
 
     private void clickedDelete()
@@ -123,8 +132,13 @@ public class CountryInfo extends Application
         }
         Country toDelete = cobo1.getValue();
         int index = countryList.indexOf(toDelete);
-        if (index == countryList.size() - 1 && index == 0) {
-            countryList.add(new Country("Keine Länder vorhanden", "", -1, -1));
+        if (countryList.size() == 1)
+        {
+            cobo1.getSelectionModel().clearSelection();
+            countryList.remove(index);
+            cobo1.setPromptText("Keine Länder vorhanden");
+            countryUpdate(null);
+            return;
         }
         else if (index == countryList.size() - 1)
         {
@@ -138,7 +152,6 @@ public class CountryInfo extends Application
     {
         cobo1.setItems(countryList);
         cobo1.setMinWidth(100);
-        cobo1.setValue(countryList.get(0));
 
         Label l00 = new Label("Land:");
         Label l10 = new Label("Hauptstadt:");
@@ -190,13 +203,17 @@ public class CountryInfo extends Application
 
         hb1.getChildren().add(vb3);
 
-        TextField tf1 = new TextField("Land");
+        TextField tf1 = new TextField();
+        tf1.promptTextProperty().set("Land");
         tf1.setId("countryField");
-        TextField tf2 = new TextField("Hauptstadt");
+        TextField tf2 = new TextField();
+        tf2.promptTextProperty().set("Hauptstadt");
         tf2.setId("capitalField");
-        TextField tf3 = new TextField("Einwohner");
+        TextField tf3 = new TextField();
+        tf3.promptTextProperty().set("Einwohner");
         tf3.setId("populationField");
-        TextField tf4 = new TextField("Fläche");
+        TextField tf4 = new TextField();
+        tf4.promptTextProperty().set("Fläche");
         tf4.setId("areaField");
 
         b1.setId("add");
@@ -235,11 +252,20 @@ public class CountryInfo extends Application
         }
         else
         {
-            return num >= 1_000_000 ? num / 1_000_000 + " Mill." : NumberFormat.getNumberInstance(Locale.GERMAN).format(num / 1000) + ".000";
+            if (num < 1000)
+            {
+                return String.valueOf(num);
+            }
+            if (num < 1000000)
+            {
+                return Math.round(num / 1000.0) + ".000";
+            }
+            return Math.round(num / 1000000.0) + " Mill.";
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     }
 }

@@ -1,12 +1,16 @@
 package gui.country.combo;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class Country
 {
     private String name;
     private String capital;
     private long people;
     private long area;
-    public Country(String name, String capital, long people, long area) {
+    public Country(String name, String capital, long people, long area)
+    {
         this.name = name;
         this.capital = capital;
         this.people = people;
@@ -28,9 +32,9 @@ public class Country
     {
         return area;
     }
-    public int getBevDichte()
+    public String getBevDichte()
     {
-        return (int) (people / area);
+        return NumberFormat.getNumberInstance(Locale.GERMAN).format(Math.round((double) people / area));
     }
 
     public void setName(String name)
