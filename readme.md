@@ -13,6 +13,7 @@ sind.
 
 - Ampel beinhaltet die erste Abgabe
 - SynchStack beinhaltet die zweite Abgabe
+- gui.country.combo beinhaltet die dritte Abgabe
 - Die anderen packages sind die Übungen oder Tests von mir
 
 Viel Spaß beim Durchforschen und Angucken. Freue mich
