@@ -6,12 +6,13 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Modality;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
-public class View {
+public class View
+{
 
     private final Presenter presenter;
 
@@ -21,14 +22,16 @@ public class View {
     private final Button bAdd = new Button("Neue Trainingseinheit hinzufügen");
     private final Button bDel = new Button("Trainingseinheit löschen");
 
-    public View(Presenter presenter) {
+    public View(Presenter presenter)
+    {
         this.presenter = presenter;
         this.root = new VBox(10);
         initUI();
         setupListeners();
     }
 
-    public void initUI() {
+    public void initUI()
+    {
 
         trainingListView.setId("overviewList");
         trainingListView.setMinWidth(150);
@@ -66,53 +69,51 @@ public class View {
         root.getChildren().add(vb1);
     }
 
-    public void setupListeners() {
+    private void setupListeners()
+    {
         trainingListView.setOnMouseClicked(e -> updateListSelection());
-        bAdd.setOnAction(e -> {
-            presenter.add(showDialog());
-        });
-        bDel.setOnAction(e -> {
-            deleteListSelection();
-            updateListSelection();
-        });
+        bAdd.setOnAction(e -> presenter.showEditorDialog());
+        bDel.setOnAction(e -> onClickDelete());
     }
 
-    public void setupListView() {
+    public void setupListView()
+    {
         trainingListView.setItems(presenter.getTrainingList());
     }
 
-    public Pane getUI() {
+    public Pane getUI()
+    {
         return root;
     }
 
-    public TrainingUnit showDialog() {
-        EditorDialog ed = new EditorDialog();
-        ed.initModality(Modality.APPLICATION_MODAL);
-        // ed.setPresenter(presenter);
-        ed.showAndWait();
-        if (ed.wasSuccessfully()) {
-            return new TrainingUnit(ed.getName(), ed.getDistance(), ed.getTime());
-        }
-        return null;
+    private void onClickDelete()
+    {
+        deleteListSelection();
+        updateListSelection();
     }
-
-    public void updateListSelection() {
+    private void updateListSelection()
+    {
         String selectedUnit = trainingListView.getSelectionModel().getSelectedItem();
         presenter.select(selectedUnit);
     }
 
-    public void deleteListSelection() {
+    private void deleteListSelection()
+    {
         String selectedUnit = trainingListView.getSelectionModel().getSelectedItem();
         presenter.delete(selectedUnit);
     }
 
-    public void updateLabels(boolean empty, String name, Float d, Float t, Float v) {
-        if (!empty) {
+    public void updateLabels(boolean empty, String name, Float d, Float t, Float v)
+    {
+        if (!empty)
+        {
             labels.get("mL").setText(name);
-            labels.get("dL").setText(String.format("%.1f", d));
-            labels.get("tL").setText(String.format("%.1f", t));
-            labels.get("mSL").setText(String.format("%.1f", v));
-        } else {
+            labels.get("dL").setText(String.format(Locale.US,"%.1f", d));
+            labels.get("tL").setText(String.format(Locale.US,"%.1f", t));
+            labels.get("mSL").setText(String.format(Locale.US,"%.1f", v));
+        }
+        else
+        {
             labels.get("mL").setText("");
             labels.get("dL").setText("");
             labels.get("tL").setText("");

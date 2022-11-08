@@ -8,13 +8,12 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class EditorDialog extends Stage {
-
+public class EditorDialog extends Stage
+{
     private String name;
     private Float distance;
     private Float time;
-    // private Presenter presenter;
-    private boolean success;
+    private Presenter presenter;
 
     private final Button bAdd = new Button("Hinzufügen");
     private final Button bCancel = new Button("Abbrechen");
@@ -23,12 +22,14 @@ public class EditorDialog extends Stage {
     private final TextField tfTime = new TextField();
     private final Label errLabel = new Label();
 
-    public EditorDialog() {
+    public EditorDialog()
+    {
         initUI();
         setEvents();
     }
 
-    private void initUI() {
+    private void initUI()
+    {
         tfMarker.setId("markerTF");
         tfDistance.setId("distanceTF");
         tfTime.setId("timeTF");
@@ -50,60 +51,50 @@ public class EditorDialog extends Stage {
         setScene(scene);
     }
 
-    private void setEvents() {
+    private void setEvents()
+    {
         bAdd.setOnAction(e -> onClickAdd());
         bCancel.setOnAction(e -> close());
     }
 
-    /* public void setPresenter(Presenter presenter) {
+    public void setPresenter(Presenter presenter)
+    {
         this.presenter = presenter;
     }
-    */
 
-    private void onClickAdd() {
+
+    private void onClickAdd()
+    {
         String n = tfMarker.textProperty().get();
         String d = tfDistance.textProperty().get();
         String t = tfTime.textProperty().get();
-        try {
-            setVariables(n, d, t);
+        try
+        {
+            name = n;
+            distance = Float.parseFloat(d);
+            time = Float.parseFloat(t);
+            presenter.add(new TrainingUnit(name, distance, time));
             close();
-        } catch (IllegalArgumentException ex) {
-            if (time == null || time < 0.0f) {
-                errLabel.setText("Zeit: ungültige Eingabe");
-            }
-            if (distance == null || distance < 0.0f) {
-                errLabel.setText("Entfernung: ungültige Eingabe");
-            }
-            if (name == null || name.isEmpty()) {
+
+        }
+        catch (IllegalArgumentException ex)
+        {
+            if (n.isEmpty())
+            {
                 errLabel.setText("Kennung: ungültige Eingabe");
             }
+            else if (distance == null || distance < 0.0f)
+            {
+                errLabel.setText("Entfernung: ungültige Eingabe");
+            }
+            else if (time == null || time < 0.0f)
+            {
+                errLabel.setText("Zeit: ungültige Eingabe");
+            }
+            else
+            {
+                errLabel.setText("Kennung: existiert schon");
+            }
         }
     }
-
-    public String getName() {
-        return name;
-    }
-
-    public float getDistance() {
-        return distance;
-    }
-
-    public float getTime() {
-        return time;
-    }
-
-    private void setVariables(String n, String d, String t) {
-        if (n.isEmpty()) {
-            throw new IllegalArgumentException();
-        }
-        name = n;
-        distance = Float.parseFloat(d);
-        time = Float.parseFloat(t);
-        success = true;
-    }
-
-    public boolean wasSuccessfully() {
-        return success;
-    }
-
 }
