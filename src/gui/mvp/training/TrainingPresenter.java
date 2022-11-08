@@ -2,7 +2,6 @@ package gui.mvp.training;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.ObservableMap;
 
 public class TrainingPresenter {
     protected Model model;

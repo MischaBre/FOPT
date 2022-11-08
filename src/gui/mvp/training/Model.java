@@ -30,14 +30,10 @@ public class Model {
         return data.keySet().toArray(new String[0]);
     }
 
-    public boolean isEmpty() {
-        return data.isEmpty();
-    }
-
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        data.forEach((k, v) -> s.append(k + ": " + v.getTrTime() + " - "));
+        data.forEach((k, v) -> s.append(k).append(": ").append(v.getTrTime()).append(" - "));
         return s.toString();
     }
 }

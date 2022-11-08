@@ -15,6 +15,7 @@ public class Semaphore {
             try {
                 wait();
             } catch (InterruptedException e) {
+
             }
         }
         value -= 1;

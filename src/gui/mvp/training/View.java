@@ -67,9 +67,7 @@ public class View {
     }
 
     public void setupListeners() {
-        trainingListView.setOnMouseClicked(e -> {
-            updateListSelection();
-        });
+        trainingListView.setOnMouseClicked(e -> updateListSelection());
         bAdd.setOnAction(e -> {
             TrainingUnit t = showDialog();
         });

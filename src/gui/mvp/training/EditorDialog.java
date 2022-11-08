@@ -55,9 +55,7 @@ public class EditorDialog extends Stage {
 
             }
         });
-        bCancel.setOnAction(e -> {
-            close();
-        });
+        bCancel.setOnAction(e -> close());
     }
 
     public String[] getValues() {
