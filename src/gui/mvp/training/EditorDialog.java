@@ -55,9 +55,10 @@ public class EditorDialog extends Stage {
         bCancel.setOnAction(e -> close());
     }
 
-    public void setPresenter(Presenter presenter) {
+    /* public void setPresenter(Presenter presenter) {
         this.presenter = presenter;
     }
+    */
 
     private void onClickAdd() {
         String n = tfMarker.textProperty().get();
