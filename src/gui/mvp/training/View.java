@@ -69,7 +69,7 @@ public class View {
     public void setupListeners() {
         trainingListView.setOnMouseClicked(e -> updateListSelection());
         bAdd.setOnAction(e -> {
-            TrainingUnit t = showDialog();
+            presenter.add(showDialog());
         });
         bDel.setOnAction(e -> {
             deleteListSelection();
@@ -89,9 +89,8 @@ public class View {
         EditorDialog ed = new EditorDialog(presenter);
         ed.initModality(Modality.APPLICATION_MODAL);
         ed.showAndWait();
-        String[] blub = ed.getValues();
-        for (String s : blub) {
-            System.out.println(s);
+        if (ed.wasSuccessfully()) {
+            return new TrainingUnit(ed.getName(), ed.getDistance(), ed.getTime());
         }
         return null;
     }

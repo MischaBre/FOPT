@@ -29,6 +29,13 @@ public class TrainingPresenter {
         return trainingList;
     }
 
+    public void add(TrainingUnit t) {
+        if (t != null) {
+            model.addTraining(t);
+            trainingList.add(t.getName());
+        }
+    }
+
     public void select(String s) {
         if (s == null) {
             sendEmptyUpdateView();
