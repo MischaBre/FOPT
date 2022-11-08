@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class View {
 
-    private final TrainingPresenter presenter;
+    private final Presenter presenter;
 
     private final VBox root;
     private final ListView<String> trainingListView = new ListView<>();
@@ -21,7 +21,7 @@ public class View {
     private final Button bAdd = new Button("Neue Trainingseinheit hinzufügen");
     private final Button bDel = new Button("Trainingseinheit löschen");
 
-    public View(TrainingPresenter presenter) {
+    public View(Presenter presenter) {
         this.presenter = presenter;
         this.root = new VBox(10);
         initUI();
@@ -86,8 +86,9 @@ public class View {
     }
 
     public TrainingUnit showDialog() {
-        EditorDialog ed = new EditorDialog(presenter);
+        EditorDialog ed = new EditorDialog();
         ed.initModality(Modality.APPLICATION_MODAL);
+        // ed.setPresenter(presenter);
         ed.showAndWait();
         if (ed.wasSuccessfully()) {
             return new TrainingUnit(ed.getName(), ed.getDistance(), ed.getTime());

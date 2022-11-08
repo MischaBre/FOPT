@@ -16,15 +16,15 @@ public class TrainingUnit implements Comparable<TrainingUnit> {
         return this.name.compareTo(o.name);
     }
 
-    public String getName() {
+    public String getMarker() {
         return name;
     }
 
-    public float getTrDistance() {
+    public float getDistance() {
         return trDistance;
     }
 
-    public float getTrTime() {
+    public float getTime() {
         return trTime;
     }
 

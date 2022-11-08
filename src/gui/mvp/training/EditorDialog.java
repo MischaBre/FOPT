@@ -13,7 +13,7 @@ public class EditorDialog extends Stage {
     private String name;
     private Float distance;
     private Float time;
-    private TrainingPresenter presenter;
+    // private Presenter presenter;
     private boolean success;
 
     private final Button bAdd = new Button("Hinzufügen");
@@ -23,8 +23,7 @@ public class EditorDialog extends Stage {
     private final TextField tfTime = new TextField();
     private final Label errLabel = new Label();
 
-    public EditorDialog(TrainingPresenter presenter) {
-        this.presenter = presenter;
+    public EditorDialog() {
         initUI();
         setEvents();
     }
@@ -33,7 +32,7 @@ public class EditorDialog extends Stage {
         tfMarker.setId("markerTF");
         tfDistance.setId("distanceTF");
         tfTime.setId("timeTF");
-        errLabel.setText("errMsgLabel");
+        errLabel.setId("errMsgLabel");
 
         HBox hb1 = new HBox(new Label("Kennung (nicht leer): "), tfMarker);
         HBox hb2 = new HBox(new Label("Entfernung (in km): "), tfDistance);
@@ -56,6 +55,10 @@ public class EditorDialog extends Stage {
         bCancel.setOnAction(e -> close());
     }
 
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
     private void onClickAdd() {
         String n = tfMarker.textProperty().get();
         String d = tfDistance.textProperty().get();
@@ -65,13 +68,13 @@ public class EditorDialog extends Stage {
             close();
         } catch (IllegalArgumentException ex) {
             if (time == null || time < 0.0f) {
-                errLabel.setText("Zeit: Ungültige Eingabe");
+                errLabel.setText("Zeit: ungültige Eingabe");
             }
             if (distance == null || distance < 0.0f) {
-                errLabel.setText("Entfernung: Ungültige Eingabe");
+                errLabel.setText("Entfernung: ungültige Eingabe");
             }
             if (name == null || name.isEmpty()) {
-                errLabel.setText("Kennung: Ungültige Eingabe");
+                errLabel.setText("Kennung: ungültige Eingabe");
             }
         }
     }

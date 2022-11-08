@@ -1,21 +1,21 @@
 package gui.mvp.training;
 
+import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.TreeMap;
 
 public class Model {
 
     private final Map<String, TrainingUnit> data;
 
     public Model() {
-        data = new TreeMap<>();
+        data = new LinkedHashMap<>();
     }
 
-    public void addTraining(TrainingUnit t) {
-        if (data.containsKey(t.getName())) {
+    public void addTrainingUnit(TrainingUnit t) {
+        if (data.containsKey(t.getMarker())) {
             throw new IllegalArgumentException();
         }
-        data.put(t.getName(), t);
+        data.put(t.getMarker(), t);
     }
 
     public void removeTrainingUnit(String name) {
@@ -33,7 +33,7 @@ public class Model {
     @Override
     public String toString() {
         StringBuilder s = new StringBuilder();
-        data.forEach((k, v) -> s.append(k).append(": ").append(v.getTrTime()).append(" - "));
+        data.forEach((k, v) -> s.append(k).append(": ").append(v.getTime()).append(" - "));
         return s.toString();
     }
 }

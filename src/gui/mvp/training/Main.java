@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
     public void start(Stage primaryStage) {
-        TrainingPresenter p = new TrainingPresenter();
+        Presenter p = new Presenter();
         View v = new View(p);
         Model m = new Model();
         p.setupModelView(m, v);
