@@ -1,5 +1,6 @@
 package gui.mvp.training;
 
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -70,7 +71,8 @@ public class View {
     private void setupListeners() {
         // trainingListView.setOnMouseClicked(e -> updateListSelection());      NICHT GUT, unten besser
         trainingListView.getSelectionModel().getSelectedItems().addListener(
-                (ListChangeListener.Change<? extends String> c) -> updateListSelection()
+                (ListChangeListener.Change<? extends String> c) ->
+                        Platform.runLater(this::updateListSelection)
         );
         bAdd.setOnAction(e -> presenter.showEditorDialog());
         bDel.setOnAction(e -> onClickDelete());
@@ -90,6 +92,7 @@ public class View {
     }
 
     private void updateListSelection() {
+        System.out.println(Thread.currentThread().getName());
         String selectedUnit = trainingListView.getSelectionModel().getSelectedItem();
         presenter.select(selectedUnit);
     }
