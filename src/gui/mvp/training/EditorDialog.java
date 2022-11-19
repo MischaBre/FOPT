@@ -1,5 +1,6 @@
 package gui.mvp.training;
 
+import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -70,15 +71,17 @@ public class EditorDialog extends Stage {
             close();
 
         } catch (IllegalArgumentException ex) {
-            if (n.isEmpty()) {
-                errLabel.setText("Kennung: ungültige Eingabe");
-            } else if (distance == null || distance < 0.0f) {
-                errLabel.setText("Entfernung: ungültige Eingabe");
-            } else if (time == null || time < 0.0f) {
-                errLabel.setText("Zeit: ungültige Eingabe");
-            } else {
-                errLabel.setText("Kennung: existiert schon");
-            }
+            Platform.runLater(() -> {
+                if (n.isEmpty()) {
+                    errLabel.setText("Kennung: ungültige Eingabe");
+                } else if (distance == null || distance < 0.0f) {
+                    errLabel.setText("Entfernung: ungültige Eingabe");
+                } else if (time == null || time < 0.0f) {
+                    errLabel.setText("Zeit: ungültige Eingabe");
+                } else {
+                    errLabel.setText("Kennung: existiert schon");
+                }
+            });
         }
     }
 }

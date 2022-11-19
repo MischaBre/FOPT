@@ -46,7 +46,7 @@ public class Presenter {
 
     public void select(String s) {
         if (s == null) {
-            sendEmptyUpdateView();
+            view.updateLabels(true, "", 0f, 0f, 0f);
         } else {
             TrainingUnit t = model.getTrainingUnit(s);
             view.updateLabels(false, t.getMarker(), t.getDistance(), t.getTime(), t.getMeanSpeed());
@@ -58,9 +58,5 @@ public class Presenter {
             trainingList.remove(s);
             model.removeTrainingUnit(s);
         }
-    }
-
-    private void sendEmptyUpdateView() {
-        view.updateLabels(true, "", 0f, 0f, 0f);
     }
 }

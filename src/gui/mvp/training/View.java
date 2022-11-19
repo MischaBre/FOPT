@@ -71,11 +71,10 @@ public class View {
     private void setupListeners() {
         // trainingListView.setOnMouseClicked(e -> updateListSelection());      NICHT GUT, unten besser
         trainingListView.getSelectionModel().getSelectedItems().addListener(
-                (ListChangeListener.Change<? extends String> c) ->
-                        Platform.runLater(this::updateListSelection)
+                (ListChangeListener.Change<? extends String> c) -> updateListSelection()
         );
         bAdd.setOnAction(e -> presenter.showEditorDialog());
-        bDel.setOnAction(e -> onClickDelete());
+        bDel.setOnAction(e ->  onClickDelete());
     }
 
     public void setupListView() {
@@ -92,7 +91,6 @@ public class View {
     }
 
     private void updateListSelection() {
-        System.out.println(Thread.currentThread().getName());
         String selectedUnit = trainingListView.getSelectionModel().getSelectedItem();
         presenter.select(selectedUnit);
     }
@@ -103,17 +101,19 @@ public class View {
     }
 
     public void updateLabels(boolean empty, String name, Float d, Float t, Float v) {
-        if (!empty) {
-            labels.get("mL").setText(name);
-            labels.get("dL").setText(String.format(Locale.US, "%.1f", d));
-            labels.get("tL").setText(String.format(Locale.US, "%.1f", t));
-            labels.get("mSL").setText(String.format(Locale.US, "%.1f", v));
-        } else {
-            labels.get("mL").setText("");
-            labels.get("dL").setText("");
-            labels.get("tL").setText("");
-            labels.get("mSL").setText("");
-        }
+        Platform.runLater(() -> {
+            if (!empty) {
+                labels.get("mL").setText(name);
+                labels.get("dL").setText(String.format(Locale.US, "%.1f", d));
+                labels.get("tL").setText(String.format(Locale.US, "%.1f", t));
+                labels.get("mSL").setText(String.format(Locale.US, "%.1f", v));
+            } else {
+                labels.get("mL").setText("");
+                labels.get("dL").setText("");
+                labels.get("tL").setText("");
+                labels.get("mSL").setText("");
+            }
+        });
     }
 
 }
