@@ -1,4 +1,4 @@
-package sockets;
+package sockets.udp;
 
 public class MCClientManager {
     public static void main(String[] args) {

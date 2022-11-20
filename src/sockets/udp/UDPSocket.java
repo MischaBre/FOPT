@@ -1,4 +1,4 @@
-package sockets;
+package sockets.udp;
 
 import java.net.*;
 import java.io.*;

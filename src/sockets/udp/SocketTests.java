@@ -1,4 +1,4 @@
-package sockets;
+package sockets.udp;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

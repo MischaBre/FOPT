@@ -1,6 +1,5 @@
-package sockets;
+package sockets.udp;
 
-import java.io.IOException;
 import java.net.InetAddress;
 
 public class CounterClient {
