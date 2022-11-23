@@ -48,7 +48,7 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
         return isOpen;
     }
 
-    private Data makeDeepCopyOfData() throws IOException, ClassNotFoundException{
+    private DataImpl makeDeepCopyOfData() throws IOException, ClassNotFoundException{
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         oos.writeObject(dataImpl);
@@ -57,6 +57,6 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
 
         ByteArrayInputStream bas = new ByteArrayInputStream(bos.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(bas);
-        return (Data) ois.readObject();
+        return (DataImpl) ois.readObject();
     }
 }
