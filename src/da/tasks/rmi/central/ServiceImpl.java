@@ -29,6 +29,7 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
     public synchronized Data get() throws RemoteException {
         if (isOpen) {
             // System.out.println(dataImpl);
+            // return (Data) UnicastRemoteObject.exportObject(dataImpl,0); ?????
             return dataImpl;
         } else {
             Data obj = null;

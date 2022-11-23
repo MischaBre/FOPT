@@ -4,7 +4,7 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
-public class DataImpl extends UnicastRemoteObject implements Data {
+public class DataImpl implements Data {
     private ArrayList<String> data;
     public DataImpl() throws RemoteException {
         data = new ArrayList<>();

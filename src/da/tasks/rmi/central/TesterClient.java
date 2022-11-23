@@ -8,29 +8,28 @@ import java.rmi.RemoteException;
 public class TesterClient {
     public static void main(String[] args) {
         try {
-            Service serviceImpl = (Service) Naming.lookup("rmi://localhost/ServiceImpl");
-            Data data = serviceImpl.get();
+            Service service = (Service) Naming.lookup("rmi://localhost/Service");
+            Data data = service.get();
             data.append("blub");
             data.append("blub");
-            serviceImpl.get().append("blub");
             for (String s : data.getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next1");
-            for (String s : serviceImpl.get().getValues()) {
+            for (String s : service.get().getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next2");
-            serviceImpl.close();
-            for (String s : serviceImpl.get().getValues()) {
+            service.close();
+            for (String s : service.get().getValues()) {
                 System.out.println(s);
             }
-            serviceImpl.get().append("blub");
-            for (String s : serviceImpl.get().getValues()) {
+            service.get().append("blub");
+            for (String s : service.get().getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next3");
-            data = serviceImpl.open();
+            data = service.open();
             data.append("hihi");
             for (String s : data.getValues()) {
                 System.out.println(s);

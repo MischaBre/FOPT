@@ -8,7 +8,7 @@ public class TesterServer {
     public static void main(String[] args) {
         try {
             ServiceImpl service = new ServiceImpl();
-            Naming.rebind("ServiceImpl", service);
+            Naming.rebind("Service", service);
         } catch (RemoteException | MalformedURLException e) {
             e.printStackTrace();
         }
