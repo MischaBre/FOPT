@@ -56,6 +56,6 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
 
         ByteArrayInputStream bas = new ByteArrayInputStream(bos.toByteArray());
         ObjectInputStream ois = new ObjectInputStream(bas);
-        return (DataImpl) ois.readObject();
+        return (Data) ois.readObject();
     }
 }
