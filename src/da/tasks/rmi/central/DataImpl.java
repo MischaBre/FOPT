@@ -8,6 +8,7 @@ public class DataImpl implements Data {
     private ArrayList<String> data;
     public DataImpl() throws RemoteException {
         data = new ArrayList<>();
+        //UnicastRemoteObject.exportObject(this, 0);
     }
 
     public synchronized void append(String s) throws RemoteException {
@@ -18,13 +19,5 @@ public class DataImpl implements Data {
 
     public synchronized ArrayList<String> getValues() throws RemoteException {
         return data;
-    }
-
-    public String miep() {
-        String res = "[";
-        for (String s : data) {
-            res += s + ",";
-        }
-        return res + "]";
     }
 }

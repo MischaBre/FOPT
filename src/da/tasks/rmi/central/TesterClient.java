@@ -24,6 +24,7 @@ public class TesterClient {
             for (String s : service.get().getValues()) {
                 System.out.println(s);
             }
+            System.out.println("_______next2b");
             service.get().append("blub");
             for (String s : service.get().getValues()) {
                 System.out.println(s);

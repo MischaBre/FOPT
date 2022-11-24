@@ -9,8 +9,10 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
     private boolean isOpen;
 
     public ServiceImpl() throws RemoteException {
+        super();
         this.dataImpl = new DataImpl();
         isOpen = true;
+        UnicastRemoteObject.exportObject(dataImpl, 0);
     }
 
     @Override
@@ -28,8 +30,6 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
     @Override
     public synchronized Data get() throws RemoteException {
         if (isOpen) {
-            // System.out.println(dataImpl);
-            // return (Data) UnicastRemoteObject.exportObject(dataImpl,0); ?????
             return dataImpl;
         } else {
             Data obj = null;
