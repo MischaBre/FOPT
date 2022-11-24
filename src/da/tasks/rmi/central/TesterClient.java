@@ -10,31 +10,37 @@ public class TesterClient {
         try {
             Service service = (Service) Naming.lookup("rmi://localhost/Service");
             Data data = service.get();
+            System.out.println(data);
             data.append("blub");
             data.append("blub");
             for (String s : data.getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next1");
-            for (String s : service.get().getValues()) {
+            for (String s : data.getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next2");
-            service.close();
-            for (String s : service.get().getValues()) {
+            data = service.close();
+            for (String s : data.getValues()) {
                 System.out.println(s);
             }
             System.out.println("_______next2b");
-            service.get().append("blub");
-            for (String s : service.get().getValues()) {
+            data.append("blub");
+            for (String s : data.getValues()) {
                 System.out.println(s);
             }
+            System.out.println(data);
             System.out.println("_______next3");
             data = service.open();
             data.append("hihi");
             for (String s : data.getValues()) {
                 System.out.println(s);
             }
+            System.out.println(data);
+            System.out.println("_______next2");
+            data = service.close();
+            System.out.println(data);
         } catch (MalformedURLException | NotBoundException | RemoteException e) {
             e.printStackTrace();
         }

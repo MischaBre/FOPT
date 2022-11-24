@@ -5,50 +5,52 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class ServiceImpl extends UnicastRemoteObject implements Service {
-    private DataImpl dataImpl;
-    private boolean isOpen;
+    private final DataImpl dataImpl;
+    private boolean isExported;
 
     public ServiceImpl() throws RemoteException {
         super();
         this.dataImpl = new DataImpl();
-        isOpen = true;
-        UnicastRemoteObject.exportObject(dataImpl, 0);
+        isExported = false;
+        switchExportStatus();
     }
 
     @Override
     public synchronized Data open() throws RemoteException {
-        isOpen = true;
-        return get();
+        if (!isExported) {
+            switchExportStatus();
+        }
+        return dataImpl;
     }
 
     @Override
     public synchronized Data close() throws RemoteException {
-        isOpen = false;
-        return get();
+        if (isExported) {
+            switchExportStatus();
+        }
+        return dataImpl;
     }
 
     @Override
     public synchronized Data get() throws RemoteException {
-        if (isOpen) {
-            return dataImpl;
-        } else {
-            Data obj = null;
-            try {
-                obj = makeDeepCopyOfData();
-                // System.out.println(obj);
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-            return obj;
-        }
+        return dataImpl;
     }
 
     @Override
     public synchronized boolean isOpen() throws RemoteException {
-        return isOpen;
+        return isExported;
     }
 
-    private DataImpl makeDeepCopyOfData() throws IOException, ClassNotFoundException{
+    private void switchExportStatus() throws RemoteException {
+        if (isExported) {
+            UnicastRemoteObject.unexportObject(dataImpl, false);
+        } else {
+            UnicastRemoteObject.exportObject(dataImpl, 0);
+        }
+        isExported = !isExported;
+    }
+
+    private DataImpl makeDeepCopyOfData() throws IOException, ClassNotFoundException {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(bos);
         oos.writeObject(dataImpl);

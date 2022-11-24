@@ -1,14 +1,13 @@
 package da.tasks.rmi.central;
 
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 
 public class DataImpl implements Data {
-    private ArrayList<String> data;
+    private final ArrayList<String> data;
+
     public DataImpl() throws RemoteException {
         data = new ArrayList<>();
-        //UnicastRemoteObject.exportObject(this, 0);
     }
 
     public synchronized void append(String s) throws RemoteException {
