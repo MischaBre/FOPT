@@ -1,4 +1,4 @@
-package da.tasks.rmi.central;
+package rmi.central;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

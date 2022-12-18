@@ -1,4 +1,4 @@
-package da.tasks.rmi.central;
+package rmi.central;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

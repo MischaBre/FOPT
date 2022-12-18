@@ -1,4 +1,4 @@
-package da.tasks.rmi.central;
+package rmi.central;
 
 import java.io.Serializable;
 import java.rmi.Remote;
