@@ -109,7 +109,7 @@ public class View {
         });
     }
 
-    public void updateLabels(boolean empty) {
+    public void updateEmptyLabels() {
         Platform.runLater(() -> {
             labels.get("mL").setText("");
             labels.get("dL").setText("");

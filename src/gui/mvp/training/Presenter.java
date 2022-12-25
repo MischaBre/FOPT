@@ -46,7 +46,7 @@ public class Presenter {
 
     public void select(String s) {
         if (s == null) {
-            view.updateLabels(true);
+            view.updateEmptyLabels();
         } else {
             TrainingUnit t = model.getTrainingUnit(s);
             view.updateLabels(t.getMarker(), t.getDistance(), t.getTime(), t.getMeanSpeed());
