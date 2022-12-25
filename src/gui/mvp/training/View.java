@@ -100,19 +100,21 @@ public class View {
         presenter.delete(selectedUnit);
     }
 
-    public void updateLabels(boolean empty, String name, Float d, Float t, Float v) {
+    public void updateLabels(String name, Float d, Float t, Float v) {
         Platform.runLater(() -> {
-            if (!empty) {
-                labels.get("mL").setText(name);
-                labels.get("dL").setText(String.format(Locale.US, "%.1f", d));
-                labels.get("tL").setText(String.format(Locale.US, "%.1f", t));
-                labels.get("mSL").setText(String.format(Locale.US, "%.1f", v));
-            } else {
-                labels.get("mL").setText("");
-                labels.get("dL").setText("");
-                labels.get("tL").setText("");
-                labels.get("mSL").setText("");
-            }
+            labels.get("mL").setText(name);
+            labels.get("dL").setText(String.format(Locale.US, "%.1f", d));
+            labels.get("tL").setText(String.format(Locale.US, "%.1f", t));
+            labels.get("mSL").setText(String.format(Locale.US, "%.1f", v));
+        });
+    }
+
+    public void updateLabels(boolean empty) {
+        Platform.runLater(() -> {
+            labels.get("mL").setText("");
+            labels.get("dL").setText("");
+            labels.get("tL").setText("");
+            labels.get("mSL").setText("");
         });
     }
 

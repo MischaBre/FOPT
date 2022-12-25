@@ -46,10 +46,10 @@ public class Presenter {
 
     public void select(String s) {
         if (s == null) {
-            view.updateLabels(true, "", 0f, 0f, 0f);
+            view.updateLabels(true);
         } else {
             TrainingUnit t = model.getTrainingUnit(s);
-            view.updateLabels(false, t.getMarker(), t.getDistance(), t.getTime(), t.getMeanSpeed());
+            view.updateLabels(t.getMarker(), t.getDistance(), t.getTime(), t.getMeanSpeed());
         }
     }
 
