@@ -14,7 +14,10 @@ sind.
 - Ampel beinhaltet die erste Abgabe
 - SynchStack beinhaltet die zweite Abgabe
 - gui.country.combo beinhaltet die dritte Abgabe
-- Die anderen packages sind die Übungen oder Tests von mir
+- gui.mvp.training beinhaltet die vierte Abgabe
+- rmi.central beinhaltet die fünfte Abgabe
+- da.tasks.servlet.exam beinhaltet die sechste Abgabe
+- Die anderen packages sind die Übungen, Zusatzabgaben oder Tests von mir
 
 Viel Spaß beim Durchforschen und Angucken. Freue mich
 auch gerne über Fehleranmerkungen oder Tipps.
