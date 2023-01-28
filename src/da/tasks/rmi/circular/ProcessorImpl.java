@@ -5,7 +5,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ProcessorImpl extends UnicastRemoteObject implements Processor {
 
-    private Service service;
+    private final Service service;
 
     public ProcessorImpl(Service service) throws RemoteException {
         this.service = service;
