@@ -1,6 +1,8 @@
 package da.tasks.rmi.circular;
 
 import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,14 +11,20 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
 
     private final List<Processor> processors;
     private final Data data;
+    public final RMISemaphoreImpl lock;
 
     public ServiceImpl() throws RemoteException {
         processors = new LinkedList<>();
         data = new DataImpl();
+        lock = new RMISemaphoreImpl(1);
+
+        Registry registry = LocateRegistry.getRegistry(1099);
+        registry.rebind("ServiceSemaphore", lock);
     }
 
     @Override
     public synchronized void add(Processor p) throws RemoteException {
+        lock.p();
         processors.add(p);
         if (processors.size() == 1) {
             Thread t = new Thread(() -> {
@@ -27,12 +35,16 @@ public class ServiceImpl extends UnicastRemoteObject implements Service {
                 }
             });
             t.start();
+            System.out.println("Los gehts");
         }
+        lock.v();
     }
 
     @Override
     public synchronized void remove(Processor p) throws RemoteException {
+        lock.p();
         processors.remove(p);
+        lock.v();
     }
 
     @Override

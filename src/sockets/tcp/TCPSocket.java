@@ -9,14 +9,12 @@ public class TCPSocket implements AutoCloseable {
     private BufferedReader istream;
     private BufferedWriter ostream;
 
-    public TCPSocket(String serverAddress, int serverPort)
-            throws UnknownHostException, IOException {
+    public TCPSocket(String serverAddress, int serverPort) throws UnknownHostException, IOException {
         socket = new Socket(serverAddress, serverPort);
         initializeStream();
     }
 
-    public TCPSocket(Socket socket)
-            throws UnknownHostException, IOException {
+    public TCPSocket(Socket socket) throws UnknownHostException, IOException {
         this.socket = socket;
         initializeStream();
     }

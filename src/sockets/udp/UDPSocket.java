@@ -15,6 +15,7 @@ public class UDPSocket implements AutoCloseable {
     }
     protected UDPSocket(DatagramSocket socket) {
         this.socket = socket;
+        System.out.println("Socket created at :" + socket.getLocalPort());
     }
     public void send(String s, InetAddress rcvrAddress, int rcvrPort) throws IOException {
         byte[] outBuffer = s.getBytes();
