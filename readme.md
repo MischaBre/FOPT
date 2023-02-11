@@ -19,7 +19,7 @@ sind.
 - da.tasks.servlet.exam beinhaltet die sechste Abgabe
 - Die anderen packages sind die Übungen, Zusatzabgaben oder Tests von mir
 
-Viel Spaß beim Durchforschen und Angucken. Freue mich
+Viel Spaß beim Durchforsten und Angucken. Freue mich
 auch gerne über Fehleranmerkungen oder Tipps.
 
 Die dazugehörigen Aufgaben darf ich
