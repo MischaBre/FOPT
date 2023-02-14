@@ -4,12 +4,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.stage.Modality;
 
+import java.util.Map;
+
 public class Presenter {
     protected Model model;
     protected View view;
-
     private final ObservableList<String> trainingList = FXCollections.observableArrayList();
-
+    //private final UndoRedoManager undoRedoManager = new UndoRedoManager();
     public Presenter() {
     }
 
@@ -40,7 +41,9 @@ public class Presenter {
         if (t.getMarker().isEmpty()) {
             throw new IllegalArgumentException();
         }
+        //Map<String, TrainingUnit> oldData = model.getData();
         model.addTrainingUnit(t);
+        //undoRedoManager.addAction(new UndoRedoAction(oldData, model.getData(), model, this));
         trainingList.add(t.getMarker());
     }
 

@@ -66,11 +66,11 @@ public class CountryInfo extends Application
         }
         else
         {
-            labels.get(0).textProperty().set(cobo1.getValue().getName());
-            labels.get(1).textProperty().set(cobo1.getValue().getCapital());
-            labels.get(2).textProperty().set(convertLongToStringRounded(cobo1.getValue().getPeople()));
-            labels.get(3).textProperty().set(convertLongToStringRounded(cobo1.getValue().getArea()));
-            labels.get(4).textProperty().set(cobo1.getValue().getBevDichte());
+            labels.get(0).textProperty().set(c.getName());
+            labels.get(1).textProperty().set(c.getCapital());
+            labels.get(2).textProperty().set(convertLongToStringRounded(c.getPeople()));
+            labels.get(3).textProperty().set(convertLongToStringRounded(c.getArea()));
+            labels.get(4).textProperty().set(c.getBevDichte());
         }
     }
 

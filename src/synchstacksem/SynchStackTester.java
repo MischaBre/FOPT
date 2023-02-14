@@ -2,9 +2,9 @@ package synchstacksem;
 
 public class SynchStackTester extends Thread {
     private final boolean isSender;
-    private final SynchStack stack;
+    private final SynchStackRaw stack;
 
-    public SynchStackTester(String name, SynchStack stack, boolean isSender) {
+    public SynchStackTester(String name, SynchStackRaw stack, boolean isSender) {
         super(name);
         this.stack = stack;
         this.isSender = isSender;
@@ -18,7 +18,7 @@ public class SynchStackTester extends Thread {
                 int i = (int) (Math.random() * 10);
                 stack.push(i);
             } else {
-                stack.pop();
+                Object result = stack.pop();
             }
             try {
                 sleep(1);

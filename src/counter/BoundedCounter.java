@@ -8,7 +8,7 @@ public class BoundedCounter {
             throw new IllegalArgumentException("Fehler: min > max");
         }
         this.min = min;
-        this.counter = min;
+        this.counter = (max+min) / 2;
         this.max = max;
     }
 

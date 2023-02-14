@@ -70,11 +70,11 @@ public class View {
 
     private void setupListeners() {
         // trainingListView.setOnMouseClicked(e -> updateListSelection());      NICHT GUT, unten besser
-        trainingListView.getSelectionModel().getSelectedItems().addListener(
-                (ListChangeListener.Change<? extends String> c) -> updateListSelection()
+        trainingListView.getSelectionModel().selectedItemProperty().addListener(
+                (o, nV, oV) -> updateListSelection()
         );
         bAdd.setOnAction(e -> presenter.showEditorDialog());
-        bDel.setOnAction(e ->  onClickDelete());
+        bDel.setOnAction(e -> onClickDelete());
     }
 
     public void setupListView() {

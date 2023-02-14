@@ -5,10 +5,17 @@ import java.util.Map;
 
 public class Model {
 
-    private final Map<String, TrainingUnit> data;
+    private Map<String, TrainingUnit> data;
 
     public Model() {
         data = new LinkedHashMap<>();
+    }
+
+    public Map<String, TrainingUnit> getData() {
+        return data;
+    }
+    public void setData(Map<String, TrainingUnit> data) {
+        this.data = data;
     }
 
     public void addTrainingUnit(TrainingUnit t) {
