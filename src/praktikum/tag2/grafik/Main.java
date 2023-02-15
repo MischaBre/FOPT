@@ -2,17 +2,15 @@ package praktikum.tag2.grafik;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
-import java.awt.*;
-import java.awt.event.MouseMotionListener;
 
 public class Main extends Application {
 
@@ -37,6 +35,9 @@ public class Main extends Application {
         HBox hbox = new HBox(lineButton, circleButton, squareButton);
         Pane pane = new Pane();
         pane.setMinHeight(250);
+
+        Label statusLabel = new Label();
+        statusLabel.setText(String.valueOf(pane.getChildren().filtered(item -> item.getClass() == Line.class).size()));
 
 
 

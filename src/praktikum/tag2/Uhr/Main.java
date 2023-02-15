@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 public class Main extends Application {
 
     private Label clockLabel;
-    private SimpleStringProperty timeString = new SimpleStringProperty();
+    private final SimpleStringProperty timeString = new SimpleStringProperty();
 
     @Override
     public void start(Stage stage) throws Exception {

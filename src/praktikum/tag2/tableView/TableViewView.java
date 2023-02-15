@@ -213,7 +213,6 @@ public class TableViewView {
                 }
                 editAllStage.close();
             } catch (NumberFormatException | NullPointerException ex) {
-                return;
             }
         });
 
