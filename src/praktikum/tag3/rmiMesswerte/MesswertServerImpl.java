@@ -31,6 +31,11 @@ public class MesswertServerImpl extends UnicastRemoteObject implements MesswertS
         return messwert;
     }
 
+    @Override
+    public void removeClient(MesswertClient client) throws RemoteException {
+        clientList.remove(client);
+    }
+
     public static void main(String[] args) {
         try {
             MesswertServerImpl server = new MesswertServerImpl();

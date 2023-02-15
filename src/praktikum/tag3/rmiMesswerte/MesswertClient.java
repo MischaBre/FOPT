@@ -8,4 +8,5 @@ public interface MesswertClient extends Remote {
     void printWert(int wert) throws RemoteException;
     int getMin() throws RemoteException;
     int getMax() throws RemoteException;
+    void close() throws RemoteException;
 }

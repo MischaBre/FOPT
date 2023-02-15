@@ -9,5 +9,6 @@ public interface MesswertServer extends Remote {
     int getMesswert() throws RemoteException;
     List<MesswertClient> getClients() throws RemoteException;
     void addClient(MesswertClient client) throws RemoteException;
+    void removeClient(MesswertClient client) throws RemoteException;
 
 }
