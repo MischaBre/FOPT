@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MesswertServerImpl extends UnicastRemoteObject implements MesswertServer {
+    // worker für Daten schreiben, sender für Daten versenden
     private final Thread worker, sender;
     private int messwert;
     private final List<MesswertClient> clientList;
