@@ -16,7 +16,7 @@ sind.
 - gui.country.combo beinhaltet die dritte Abgabe
 - gui.mvp.training beinhaltet die vierte Abgabe
 - rmi.central beinhaltet die fünfte Abgabe
-- da.tasks.servlet.exam beinhaltet die sechste Abgabe
+- da.tasks.servlet.exam beinhaltet die sechste Abgabe <strong>(nicht mehr im repo enthalten)</strong>
 - Die anderen packages sind die Übungen, Zusatzabgaben oder Tests von mir
 
 Viel Spaß beim Durchforsten und Angucken. Freue mich
