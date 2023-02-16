@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface MesswertServer extends Remote {
     void setMesswert(int messwert) throws RemoteException;
-    int getMesswert() throws RemoteException;
+    int getMesswert(int lastMesswert) throws RemoteException;
     List<MesswertClient> getClients() throws RemoteException;
     void addClient(MesswertClient client) throws RemoteException;
     void removeClient(MesswertClient client) throws RemoteException;

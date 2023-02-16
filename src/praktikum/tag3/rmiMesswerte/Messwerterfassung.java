@@ -10,7 +10,7 @@ public class Messwerterfassung {
         try (UDPSocket socket = new UDPSocket()) {
             while(true) {
                 socket.send(String.valueOf((int) (Math.random()*100)), InetAddress.getByName("localhost"), 1088);
-                System.out.println("sent");
+                System.out.println("MWE sent");
                 try {
                     Thread.sleep(5000);
                 } catch (InterruptedException e) {

@@ -12,15 +12,11 @@ public class Worker extends Thread {
     }
     @Override
     public void run() {
+        // startet einen UDPSocket und wartet auf Messwerte
         try(UDPSocket socket = new UDPSocket(1088)) {
             while (true) {
+                // setzt Messwerte als int auf den Server
                 server.setMesswert(Integer.parseInt(socket.receive(10)));
-                System.out.println("received: " + server.getMesswert());
-                for (MesswertClient cl : server.getClients()) {
-                    if (server.getMesswert() >= cl.getMin() && server.getMesswert() <= cl.getMax()) {
-                        cl.printWert(server.getMesswert());
-                    }
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();

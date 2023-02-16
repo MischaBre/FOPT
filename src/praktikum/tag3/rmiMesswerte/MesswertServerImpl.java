@@ -8,13 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MesswertServerImpl extends UnicastRemoteObject implements MesswertServer {
-    private final Thread worker;
-    private Integer messwert;
+    private final Thread worker, sender;
+    private int messwert;
     private final List<MesswertClient> clientList;
 
     public MesswertServerImpl() throws RemoteException {
         clientList = new ArrayList<>();
         worker = new Worker(this);
+        sender = new Sender(this);
     }
 
     public synchronized List<MesswertClient> getClients() throws RemoteException {
@@ -24,16 +25,28 @@ public class MesswertServerImpl extends UnicastRemoteObject implements MesswertS
         clientList.add(client);
     }
 
-    public void setMesswert(int messwert) throws RemoteException {
-        this.messwert = messwert;
-    }
-    public int getMesswert() throws RemoteException {
-        return messwert;
+    @Override
+    public synchronized void removeClient(MesswertClient client) throws RemoteException {
+        clientList.remove(client);
     }
 
-    @Override
-    public void removeClient(MesswertClient client) throws RemoteException {
-        clientList.remove(client);
+    public synchronized void setMesswert(int messwert) throws RemoteException {
+        // Messwert setzen und den Sender -> notify
+        this.messwert = messwert;
+        notify();
+    }
+
+    public synchronized int getMesswert(int lastMesswert) throws RemoteException {
+        // Wenn Messwert schon abgeholt, dann warten
+        while(lastMesswert == this.messwert) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+
+            }
+        }
+        // Messwert ist neu, dann return
+        return messwert;
     }
 
     public static void main(String[] args) {

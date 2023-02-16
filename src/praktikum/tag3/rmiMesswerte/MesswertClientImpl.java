@@ -18,7 +18,7 @@ public class MesswertClientImpl extends UnicastRemoteObject implements MesswertC
         try {
             server = (MesswertServer) Naming.lookup("rmi://localhost:1111/MesswerteServer");
             server.addClient(this);
-        } catch (RemoteException | NotBoundException | MalformedURLException e) {
+        } catch (NotBoundException | MalformedURLException e) {
             e.printStackTrace();
         }
     }
